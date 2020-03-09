@@ -62,16 +62,23 @@ CnjOrdInt::CnjOrdInt(): inicio(0) {
 
 
 // truco File/replace y que busque NdoInt* y lo remplace por NdoInt* sared_ptr<NdoInt>
+// Replace all, con esto nos aseguramos que esta todo cambiado. 
 CnjOrdInt::CnjOrdInt(const CnjOrdInt& orig) {
 	//NdoInt* p = orig.inicio;
 	sared_ptr<NdoInt> p = orig.inicio; 
 	if (p == 0)
 		inicio = 0;
 	else{
-		inicio = new NdoInt(orig.inicio->dato);
+		//////////inicio = new NdoInt(orig.inicio->dato);
+		// básicamente, es conversión de tipo. 
+		// tenemos un apuntador tradicional a apuntadores inteligentes y guardarlos 
+		// en tipos que son apuntadores inteligentes. 
+		// Y guardarlo con otro tipo.  
+		inicio = shared_ptf<NdoInt> (new NdoInt(orig.inicio->dato)) ;
 		p = p->sgt;
 		NdoInt* ultimo = inicio;
 	}
 }
-
+ 
+// El destructor no va a ser necesario, pero se harán los cambios tb. 
 
