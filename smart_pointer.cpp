@@ -58,6 +58,7 @@ class tal {
  
 CnjOrdInt::CnjOrdInt(): inicio(0) {
 	
+	
 } 
 
 
